@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>sample/thy1</title>
+</head>
+<body>
+	<h1 th:text="${'hello thy'}"></h1>
+	<!-- <div>
+		번호 : <span th:text="${noticeVo.idx}"></span>
+		제목 : <span th:text="${noticeVo.title}"></span>
+		내용 : <span th:text="${noticeVo.content}"></span>
+		작성자 : <span th:text="${noticeVo.writer}"></span>
+	</div> -->
+	<table>
+		<tr th:each="dto, status: ${list}">
+			<td th:text="${dto.idx}"></td>
+			<td th:text="${dto.title}"></td>
+			<td th:text="${dto.content}"></td>
+			<td th:text="${dto.writer}"></td>
+		</tr>
+	</table>
+	<table>
+		<tr th:each="dto, status: ${list}">
+			<td>[[${dto.idx}]]</td>
+			<td>[[${dto.title}]]</td>
+			<td>[[${dto.content}]]</td>
+			<td>[[${dto.writer}]]</td>
+		</tr>
+	</table>
+	<th:block th:each="dto, status: ${list}">
+		<span>[[${dto.idx}]]</span>
+		<span><a th:href="@{/thy/ex5(idx=${dto.idx})}">[[${dto.title}]]</a></span>
+		<span>[[${dto.content}]]</span>
+		<span>[[${dto.writer}]]</span>
+	</th:block>
+</body>
+</html>

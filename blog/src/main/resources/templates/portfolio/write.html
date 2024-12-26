@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layouts/layout}">
+   
+<th:block layout:fragment="css">
+   <style>
+	   	.fieldError {color:red;}
+   </style>
+</th:block>
+
+<div layout:fragment="content">
+
+	<div class="container">
+	  <div class="write_wrap">
+	  <h2 class="sr-only">포트폴리오 글쓰기</h2>
+	  <form name="portfolio" method="post" action="/port/save.do" onsubmit="return check()" enctype="multipart/form-data">
+	  <!-- action을 처리하기전에 check()사용자 함수를 실행하고 되돌아 와라-->
+	  <input type="hidden" th:name="${_csrf.parameterName}" th:value=${_csrf.token}>
+			<table class="bord_table">
+				<caption class="sr-only">포트폴리오 입력 표</caption>
+				<colgroup>
+					<col width="20%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>글쓴이</th>
+						<td><input type="text" th:name="writer" th:value="${user}"></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td><input type="text" th:name="title"></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea th:name="content"></textarea></td>
+					</tr>
+					<tr>
+						<th>대표 이미지</th>
+						<td><input type="file" th:name="fileName"></td>
+					</tr>
+					<tr>
+						<th>첨부</th>
+						<td><input type="file" th:name="uploadFile" multiple ></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="btn_wrap">
+				<input type="submit" value="저장" class="btn_ok">&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기" class="btn_reset">&nbsp;&nbsp;
+				<input type="button" value="목록" class="btn_list" onClick="location.href='/port/list.do';">
+			</div>
+		</form>
+	  </div>
+	  
+	</div>
+	<!-- end contents -->
+	<script>
+		function check() {
+			
+			if(portfolio.title.value=="") {
+				alert("제목을 입력");
+				portfolio.title.focus();
+				return false;
+			}
+			if(portfolio.contents.value=="") {
+				alert("내용을 입력");
+				portfolio.contents.focus();
+				return false;
+			}
+			return true;
+		}
+	</script>
+	<script>
+		$(function() {
+			$(".location  .dropdown > a").on("click",function(e) {
+				e.preventDefault();
+				if($(this).next().is(":visible")) {
+					$(".location  .dropdown > a").next().hide();
+				} else {
+					$(".location  .dropdown > a").next().hide();
+					$(this).next().show();
+				}
+			});
+		});
+	</script>
+	
+	</div>
+	</html>
