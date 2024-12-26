@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>sample/thy4</title>
+</head>
+<body>
+	<h1 th:text="${'if - unless'}"></h1>
+	<table>
+		<tr th:each="item, status:${list}">
+			<td th:if="${status.even}" th:text="짝수"></td>
+			<td th:unless="${status.even}" th:text="홀수"></td>
+			<td>[[${item.title}]]</td>
+			<td>[[${item.content}]]</td>
+			<td>[[${item.writer}]]</td>
+			<td th:text="'index: ' + ${status.index} + ', even: ' + ${status.even}"></td>
+		</tr>
+	</table>
+	<h1 th:text="${'status - index'}"></h1>
+	<table>
+		<tr th:each="item, status:${list}">
+			<td th:text="${status.index}" th:style="${status.index%2 == 0 ? 'color:red' : 'color:blue'}"></td>
+			<td>[[${item.title}]]</td>
+			<td>[[${item.content}]]</td>
+			<td>[[${item.writer}]]</td>
+		</tr>
+	</table>
+	<h1 th:text="${'switch - case'}"></h1>
+	<table>
+		<tr th:each="item, status:${list}">
+			<td th:switch="${status.even}">
+				<span th:case=true>짝수</span>
+				<span th:case=false>홀수</span>
+				<span th:text="${status.index}"></span>
+			</td>
+			<td>[[${item.title}]]</td>
+			<td>[[${item.content}]]</td>
+			<td>[[${item.writer}]]</td>
+		</tr>
+	</table>
+	<h1 th:text="${'status'}"></h1>
+	<table>
+		<tr th:each="item, status:${list}">
+			<td th:text="'index : ' + ${status.index} + ', '"></td>
+			<td th:text="'count : ' + ${status.count} + ', '"></td>
+			<td th:text="'even : ' + ${status.even} + ', '"></td>
+			<td th:text="'odd : ' + ${status.odd} + ', '"></td>
+			<td th:text="'size : ' + ${status.size} + ', '"></td>
+			<td>[[${#numbers.formatInteger(status.index, 5)}]]</td>
+			<td>[[${#temporals.format(item.regdate, 'yyyy-MM-dd')}]]</td>
+			<td>[[${item.title}]]</td>
+			<td>[[${item.content}]]</td>
+			<td>[[${item.writer}]]</td>
+		</tr>
+	</table>
+</body>
+</html>

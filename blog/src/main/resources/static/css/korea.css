@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+button {
+	background: red; 
+}
+
+i {
+	font-size: 30px;
+}
+
+#map_container {
+	width: 700px;
+	min-height: 700px;
+	float: left;
+	margin: 15px 35px;
+}
+#states path {
+	fill: #79ff9b;		/* 지도 내부 색 */
+	stroke: #000000;		/* 지도 외곽선 색 */
+	stroke-width: 1.5px;	/* 외곽선 크기, 안건드는게 좋아보임 */
+}
+
+#states path:hover {
+	fill: #5cdf7d;		/* 마우스 올렸을 시 활성화 될 색 */
+}
+
+#states .active {
+	fill: #00B700;
+}
+
+#states .activeDetail {
+	fill: #00B700;
+}
+
+#states path {
+	cursor: pointer;
+}
+
+#states text {
+	cursor: pointer;
+	font-size: 12px;
+	fill: #000000;
+	pointer-events : none;	/* 텍스트 선택 안되게끔 */
+}
